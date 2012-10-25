@@ -1,4 +1,5 @@
 ofxOpenCv
 ofxXmlSettings
 ofxKinect
+ofxOpenNI
 ofxSoso

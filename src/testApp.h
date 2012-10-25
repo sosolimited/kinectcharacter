@@ -1,50 +1,61 @@
-#pragma once
+#ifndef _TEST_APP
+#define _TEST_APP
 
+//#define USE_IR // Uncomment this to use infra red instead of RGB cam...
+
+#include "ofxOpenNI.h"
 #include "ofMain.h"
-#include "ofxOpenCv.h"
-#include "ofxKinect.h"
 
-// uncomment this to read from two kinects simultaneously
-//#define USE_TWO_KINECTS
+class testApp : public ofBaseApp{
 
-class testApp : public ofBaseApp {
 public:
-	
 	void setup();
 	void update();
 	void draw();
-	void exit();
-	
-	void drawPointCloud();
-	
-	void keyPressed(int key);
+
+	void keyPressed  (int key);
+	void keyReleased(int key);
+	void mouseMoved(int x, int y );
 	void mouseDragged(int x, int y, int button);
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
-	
-	ofxKinect kinect;
-	
-#ifdef USE_TWO_KINECTS
-	ofxKinect kinect2;
+
+	void	setupRecording(string _filename = "");
+	void	setupPlayback(string _filename);
+	string	generateFileName();
+
+	bool				isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
+	bool				isTrackingHands, isFiltering;
+
+	ofxOpenNIContext	recordContext, playContext;
+	ofxDepthGenerator	recordDepth, playDepth;
+
+#ifdef USE_IR
+	ofxIRGenerator		recordImage, playImage;
+#else
+	ofxImageGenerator	recordImage, playImage;
 #endif
-	
-	ofxCvColorImage colorImg;
-	
-	ofxCvGrayscaleImage grayImage; // grayscale depth image
-	ofxCvGrayscaleImage grayThreshNear; // the near thresholded image
-	ofxCvGrayscaleImage grayThreshFar; // the far thresholded image
-	
-	ofxCvContourFinder contourFinder;
-	
-	bool bThreshWithOpenCV;
-	bool bDrawPointCloud;
-	
-	int nearThreshold;
-	int farThreshold;
-	
-	int angle;
-	
-	// used for viewing the point cloud
-	ofEasyCam easyCam;
+
+	ofxHandGenerator	recordHandTracker, playHandTracker;
+
+	ofxUserGenerator	recordUser, playUser;
+	ofxOpenNIRecorder	oniRecorder;
+
+#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
+	ofxHardwareDriver	hardware;
+#endif
+
+	void				drawMasks();
+	void				drawPointCloud(ofxUserGenerator * user_generator, int userID);
+
+	int					nearThreshold, farThreshold;
+	int					pointCloudRotationY;
+
+	ofImage				allUserMasks, user1Mask, user2Mask, depthRangeMask;
+
+	float				filterFactor;
+
 };
+
+#endif
