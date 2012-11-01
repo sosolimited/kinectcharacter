@@ -4,13 +4,15 @@
 void testApp::setup() {
 
 	isLive			= true;
-	isTracking		= false;
-	isTrackingHands	= true;
+	isTracking		= true;
+	isTrackingHands	= false;
 	isFiltering		= false;
 	isRecording		= false;
 	isCloud			= false;
 	isCPBkgnd		= true;
 	isMasking		= true;
+    
+    skeletonPos.set(0, 0);  //Use this to shift skeleton around screen. Mapped to arrow keys.
 
 	nearThreshold = 500;
 	farThreshold  = 1000;
@@ -130,6 +132,30 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 
+    if (isLive) {
+        
+		//recordDepth.draw(0,0,640,480);
+		//recordImage.draw(640, 0, 640, 480);
+        
+		//depthRangeMask.draw(0, 480, 320, 240);	// can use this with openCV to make masks, find contours etc when not dealing with openNI 'User' like objects
+        
+		if (isTracking) {
+            ofPushMatrix();
+            ofTranslate(skeletonPos.x, skeletonPos.y);
+            ofScale(1.5, 1.5);
+			recordUser.draw();
+            ofPopMatrix();
+            
+			//if (isMasking) drawMasks();
+			//if (isCloud) drawPointCloud(&recordUser, 1);	// 0 gives you all point clouds; use userID to see point clouds for specific users
+            
+		}
+		//if (isTrackingHands)
+		//	recordHandTracker.drawHands();
+	}
+    
+    
+    /*
 	ofSetColor(255, 255, 255);
 
 	glPushMatrix();
@@ -223,6 +249,7 @@ void testApp::draw(){
 	<< "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
 
 	ofDrawBitmapString(msg.str(), 20, 560);
+    */
 
 }
 
@@ -277,10 +304,10 @@ void testApp::keyPressed(int key){
 
 	switch (key) {
 #ifdef TARGET_OSX // only working on Mac at the moment
-		case 357: // up key
+		case 't': //
 			hardware.setTiltAngle(hardware.tilt_angle++);
 			break;
-		case 359: // down key
+		case 'T': //
 			hardware.setTiltAngle(hardware.tilt_angle--);
 			break;
 #endif
@@ -305,10 +332,12 @@ void testApp::keyPressed(int key){
 				isLive = true;
 			}
 			break;
-		case 't':
+		/*
+        case 't':
 		case 'T':
 			isTracking = !isTracking;
 			break;
+        */
 		case 'h':
 		case 'H':
 			isTrackingHands = !isTrackingHands;
@@ -410,6 +439,18 @@ void testApp::keyPressed(int key){
 		case 'r':
 			recordContext.toggleRegisterViewport();
 			break;
+        case OF_KEY_LEFT:
+            skeletonPos.x -= 20;
+            break;
+        case OF_KEY_RIGHT:
+            skeletonPos.x += 20;
+            break;
+        case OF_KEY_UP:
+            skeletonPos.y -= 20;
+            break;
+        case OF_KEY_DOWN:
+            skeletonPos.y += 20;
+            break;
 		default:
 			break;
 	}

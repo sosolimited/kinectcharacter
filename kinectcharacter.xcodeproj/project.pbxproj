@@ -29,6 +29,7 @@
 		933a2227713c720ceff80fd967d0a8ee /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2b40eda85beb63e46785bc299a638898 /* tinyxml.cpp */; };
 		9d44dc88ef9e7991b4a09951e2e4769f /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832bdc407620cdba568b713d2252c43c /* tinyxmlerror.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		E0D4EB921641707B003A8B12 /* icaKinectCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0D4EB911641707B003A8B12 /* icaKinectCharacter.cpp */; };
 		E0DB682E1639D11500FE906D /* ofxDepthGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0DB68081639D11500FE906D /* ofxDepthGenerator.cpp */; };
 		E0DB682F1639D11500FE906D /* ofxGestureGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0DB680A1639D11500FE906D /* ofxGestureGenerator.cpp */; };
 		E0DB68301639D11500FE906D /* ofxHandGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0DB680C1639D11500FE906D /* ofxHandGenerator.cpp */; };
@@ -210,6 +211,8 @@
 		9e6390ca2258f0453f281348e70d68fa /* ofxLineSegmentObject.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLineSegmentObject.cpp; path = ../../../addons/ofxSoso/src/ofxLineSegmentObject.cpp; sourceTree = SOURCE_ROOT; };
 		9ff9126184dfbde8a912373ebe9d2f9d /* highgui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = highgui.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/highgui.h; sourceTree = SOURCE_ROOT; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		E0D4EB9016417071003A8B12 /* icaKinectCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = icaKinectCharacter.h; sourceTree = "<group>"; };
+		E0D4EB911641707B003A8B12 /* icaKinectCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = icaKinectCharacter.cpp; sourceTree = "<group>"; };
 		E0DB676F1639D11500FE906D /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
 		E0DB67711639D11500FE906D /* XnCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnCommon.h; sourceTree = "<group>"; };
 		E0DB67721639D11500FE906D /* XnV3DVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnV3DVector.h; sourceTree = "<group>"; };
@@ -1121,6 +1124,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
+				E0D4EB9016417071003A8B12 /* icaKinectCharacter.h */,
+				E0D4EB911641707B003A8B12 /* icaKinectCharacter.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1429,6 +1434,7 @@
 				E0DB68361639D11500FE906D /* ofxTrackedHand.cpp in Sources */,
 				E0DB68371639D11500FE906D /* ofxTrackedUser.cpp in Sources */,
 				E0DB68381639D11500FE906D /* ofxUserGenerator.cpp in Sources */,
+				E0D4EB921641707B003A8B12 /* icaKinectCharacter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
