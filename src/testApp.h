@@ -1,7 +1,7 @@
 #ifndef _TEST_APP
 #define _TEST_APP
 
-//#define USE_IR // Uncomment this to use infra red instead of RGB cam...
+#define USE_IR // Uncomment this to use infra red instead of RGB cam...
 
 #include "ofxOpenNI.h"
 #include "ofMain.h"
@@ -28,6 +28,8 @@ public:
 	bool				isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
 	bool				isTrackingHands, isFiltering;
 
+    ofVec2f             skeletonPos;
+    
 	ofxOpenNIContext	recordContext, playContext;
 	ofxDepthGenerator	recordDepth, playDepth;
 
