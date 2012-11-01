@@ -13,10 +13,12 @@ class icaKinectBodypart {
 public:
     icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint1, XnSkeletonJoint iJoint2);
     ~icaKinectBodypart();
+    void draw();
     
 public:
     XnSkeletonJoint     joints[2];
-    ofImage             image;
+    ofImage             img;
+
 };
 
 class icaKinectCharacter {
@@ -29,5 +31,6 @@ public:
     
 public:
     
+    vector<icaKinectBodypart>   parts;
     
 };
