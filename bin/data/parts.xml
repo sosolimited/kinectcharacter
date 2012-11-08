@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Part>
+    <Name>neck</Name>
+    <Image>head.png</Image>
+    <Joint0>0</Joint0>
+    <Joint1>1</Joint1>
+</Part>
+
+<Part>
+    <Name>left lower arm</Name>
+    <Image>head.png</Image>
+    <Joint0>7</Joint0>
+    <Joint1>8</Joint1>
+</Part>
+
+
+
+<Part>
+    <Name>right lower arm</Name>
+    <Image>head.png</Image>
+    <Joint0>13</Joint0>
+    <Joint1>14</Joint1>
+</Part>
+
+
