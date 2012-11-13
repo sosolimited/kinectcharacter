@@ -29,5 +29,5 @@ public:
     vector<icaKinectBodypart *>     parts;
     ofxUserGenerator                *user;
     ofxOpenNIContext                *context;
-    
+    ofImage                         background;
 };

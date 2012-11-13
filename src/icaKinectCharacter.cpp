@@ -24,12 +24,14 @@ void icaKinectCharacter::loadParts(string iPathname) {
     char imageChars[256];
 
     partsXML.loadFile(iPathname);
+   
+    string empty = "";
+    background.loadImage("images/background.png");
 	
 	int numParts = partsXML.getNumTags("Part");
     
     if(numParts > 0){
         
-        string empty = "";
         
         for(int i = 0; i < numParts; i++){
             
@@ -39,7 +41,9 @@ void icaKinectCharacter::loadParts(string iPathname) {
             XnSkeletonJoint j0 = (XnSkeletonJoint) partsXML.getValue("Joint0", 1, 0);
             XnSkeletonJoint j1 = (XnSkeletonJoint) partsXML.getValue("Joint1", 1, 0);
             
-            icaKinectBodypart *p = new icaKinectBodypart(imagePath, j0, j1, context);
+            float s = partsXML.getValue("Scale", 1.0, 0);
+            
+            icaKinectBodypart *p = new icaKinectBodypart(imagePath, j0, j1, s, context);
 
             parts.push_back(p);
             
@@ -47,12 +51,14 @@ void icaKinectCharacter::loadParts(string iPathname) {
         }
     }
     
+    
     printf("icaKinectCharacter::loadParts() - %d loaded \n", (int)parts.size());
 
 }
 
 void icaKinectCharacter::draw()
 {
+    background.draw(0, 0, -1);
     for (int i=0; i<parts.size(); i++) {
         parts[i]->draw();
     }
