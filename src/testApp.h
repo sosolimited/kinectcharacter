@@ -5,6 +5,8 @@
 
 #include "ofxOpenNI.h"
 #include "ofMain.h"
+#include "icaKinectCharacter.h"
+
 
 class testApp : public ofBaseApp{
 
@@ -22,7 +24,6 @@ public:
 	void windowResized(int w, int h);
 
 	void	setupRecording(string _filename = "");
-	void	setupPlayback(string _filename);
 	string	generateFileName();
 
 	bool				isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
@@ -48,16 +49,21 @@ public:
 	ofxHardwareDriver	hardware;
 #endif
 
-	void				drawMasks();
-	void				drawPointCloud(ofxUserGenerator * user_generator, int userID);
-
 	int					nearThreshold, farThreshold;
 	int					pointCloudRotationY;
 
 	ofImage				allUserMasks, user1Mask, user2Mask, depthRangeMask;
 
 	float				filterFactor;
+    
+    
+    vector<icaKinectCharacter *>  characters;
+    icaKinectCharacter *curCharacter;
+    int curCharacterIndex;
 
+    ofDirectory         directory;
+    
+    static bool         useHardware;
 };
 
 #endif

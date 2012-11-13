@@ -8,26 +8,26 @@
 #pragma once
 #include "ofxTrackedUser.h"
 #include "ofImage.h"
+#include "ofxXmlSettings.h"
+#include "ofxUserGenerator.h"
+#include "icaKinectBodypart.h"
 
-class icaKinectBodypart {
-public:
-    icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint1, XnSkeletonJoint iJoint2);
-    ~icaKinectBodypart();
-    
-public:
-    XnSkeletonJoint     joints[2];
-    ofImage             image;
-};
 
 class icaKinectCharacter {
     
 public:
-    icaKinectCharacter(string iPathname);
+    icaKinectCharacter(string iPathname, ofxOpenNIContext *iContext);//, ofxUserGenerator *iUser);
     ~icaKinectCharacter();
+    
+    void                loadParts(string iPathname);
     
     void                draw();
     
 public:
     
+    ofxXmlSettings                  partsXML;
+    vector<icaKinectBodypart *>     parts;
+    ofxUserGenerator                *user;
+    ofxOpenNIContext                *context;
     
 };
