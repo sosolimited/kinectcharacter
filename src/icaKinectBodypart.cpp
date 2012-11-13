@@ -17,7 +17,7 @@ icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0,
     printf("joints %d %d", joints[0], joints[1]);
     
     img.loadImage("images/"+iImagePath);
-    //img.setAnchorPercent(0.5, 0.5);
+    img.setAnchorPercent(0.5, 0.5);
     
     iContext->getDepthGenerator(&depth_generator);
 	iContext->getUserGenerator(&user_generator);
@@ -45,6 +45,13 @@ void icaKinectBodypart::draw() {
         
         depth_generator.ConvertRealWorldToProjective(2, position, position);
         
+        position[0].X = position[0].X*ofGetWidth()/640.0f;
+        position[0].Y = position[0].Y*ofGetHeight()/480.0f;
+        
+        position[1].X = position[1].X*ofGetWidth()/640.0f;
+        position[1].Y = position[1].Y*ofGetHeight()/480.0f;
+
+        
         float h = ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y);
         float w = h * (float)img.width / (float)img.height;
         
@@ -53,8 +60,10 @@ void icaKinectBodypart::draw() {
         
         printf("%f %d %f %f %d %f %f\n", h, joints[0], position[0].X, position[0].Y, joints[1], position[1].X, position[1].Y);
         
-        //img.draw((position[0].X+position[1].X)/2, (position[0].Y+position[1].Y)/2, 0, w, h);
-        //img.draw((position[0].X+position[1].X)/2, (position[0].Y+position[1].Y)/2, 0, w, h);
-        img.draw(position[0].X, position[0].Y, 0);//, w, h);
+        ofPushMatrix();
+        ofTranslate( (position[0].X+position[1].X)/2, (position[0].Y+position[1].Y)/2);
+        ofRotate(ofRadToDeg(angle), 0, 0, 1);
+        img.draw(0, 0, 0, w, h);
+        ofPopMatrix();
     }
 }
