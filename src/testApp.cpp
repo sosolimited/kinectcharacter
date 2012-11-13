@@ -1,5 +1,8 @@
 #include "testApp.h"
 
+
+bool testApp::useHardware = false;
+
 //--------------------------------------------------------------
 void testApp::setup() {
 
@@ -19,13 +22,22 @@ void testApp::setup() {
 
 	filterFactor = 0.1f;
 
-	setupRecording();
+	if(useHardware) setupRecording();
 
 	ofBackground(0, 0, 0);
     ofEnableAlphaBlending();
-    
-    character = new icaKinectCharacter("parts.xml", &recordContext);
 
+    
+    //Read characters in.
+    directory.listDir("characters/");
+	directory.sort();
+	for(int i = 0; i < (int)directory.size(); i++){;
+        characters.push_back(new icaKinectCharacter(directory.getPath(i) + "/", &recordContext));
+	}
+	curCharacterIndex = 0;
+    //character = new icaKinectCharacter("parts.xml", &recordContext);
+    if(characters.size() == 0) curCharacter = NULL;
+    else curCharacter = characters[0];
 }
 
 void testApp::setupRecording(string _filename) {
@@ -63,53 +75,55 @@ void testApp::setupRecording(string _filename) {
 //--------------------------------------------------------------
 void testApp::update(){
 
+    if(useHardware){
 #ifdef TARGET_OSX // only working on Mac at the moment
-	hardware.update();
+        hardware.update();
 #endif
 
-	if (isLive) {
+        if (isLive) {
 
-		// update all nodes
-		recordContext.update();
-		recordDepth.update();
-		recordImage.update();
+            // update all nodes
+            recordContext.update();
+            recordDepth.update();
+            recordImage.update();
 
-		// demo getting depth pixels directly from depth gen
-		depthRangeMask.setFromPixels(recordDepth.getDepthPixels(nearThreshold, farThreshold),
-									 recordDepth.getWidth(), recordDepth.getHeight(), OF_IMAGE_GRAYSCALE);
+            // demo getting depth pixels directly from depth gen
+            depthRangeMask.setFromPixels(recordDepth.getDepthPixels(nearThreshold, farThreshold),
+                                         recordDepth.getWidth(), recordDepth.getHeight(), OF_IMAGE_GRAYSCALE);
 
-		// update tracking/recording nodes
-		if (isTracking) recordUser.update();
-		if (isRecording) oniRecorder.update();
+            // update tracking/recording nodes
+            if (isTracking) recordUser.update();
+            if (isRecording) oniRecorder.update();
 
-		// demo getting pixels from user gen
-		if (isTracking && isMasking) {
-			allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
-			user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
-			user2Mask.setFromPixels(recordUser.getUserPixels(2), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
-		}
+            // demo getting pixels from user gen
+            if (isTracking && isMasking) {
+                allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
+                user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
+                user2Mask.setFromPixels(recordUser.getUserPixels(2), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
+            }
 
-	}
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
 
-    if (isLive) {
-        
-		if (isTracking) {
-            ofPushMatrix();
-            ofTranslate(skeletonPos.x, skeletonPos.y);
-            ofScale(1.5, 1.5);
-			recordUser.draw();
-            ofPopMatrix();
+    if(useHardware){
+        if (isLive) {
             
-            character->draw();
-            
-		}
-	}
-    
-
+            if (isTracking) {
+                ofPushMatrix();
+                ofTranslate(skeletonPos.x, skeletonPos.y);
+                ofScale(1.5, 1.5);
+                recordUser.draw();
+                ofPopMatrix();
+                
+                if(curCharacter) curCharacter->draw();
+                
+            }
+        }
+    }
 }
 
 
@@ -249,10 +263,15 @@ void testApp::keyPressed(int key){
 			recordContext.toggleRegisterViewport();
 			break;
         case OF_KEY_LEFT:
-            skeletonPos.x -= 20;
+            //skeletonPos.x -= 20;
+            curCharacterIndex--;
+            if(curCharacterIndex < 0) curCharacterIndex = 0;
+            curCharacter = characters[curCharacterIndex];
             break;
         case OF_KEY_RIGHT:
-            skeletonPos.x += 20;
+            //skeletonPos.x += 20;
+            curCharacterIndex = ++curCharacterIndex%characters.size();
+            curCharacter = characters[curCharacterIndex];
             break;
         case OF_KEY_UP:
             skeletonPos.y -= 20;

@@ -20,7 +20,7 @@ icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0,
     
     printf("joints %d %d", joints[0], joints[1]);
     
-    img.loadImage("images/"+iImagePath);
+    img.loadImage(iImagePath);
     img.setAnchorPercent(0.5, 0.5);
     
     iContext->getDepthGenerator(&depth_generator);
