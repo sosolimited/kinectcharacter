@@ -8,11 +8,15 @@
 
 #include "icaKinectBodypart.h"
 
-icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0, XnSkeletonJoint iJoint1, ofxOpenNIContext* iContext)
+icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0, XnSkeletonJoint iJoint1, float iScale, ofxOpenNIContext* iContext)
 {
  
     joints[0] = iJoint0;
     joints[1] = iJoint1;
+    
+    scale = iScale;
+    
+    isHead = (joints[0] == 1) ? true : false;
     
     printf("joints %d %d", joints[0], joints[1]);
     
@@ -52,18 +56,24 @@ void icaKinectBodypart::draw() {
         position[1].Y = position[1].Y*ofGetHeight()/480.0f;
 
         
-        float h = ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y);
-        float w = h * (float)img.width / (float)img.height;
-        
         float angle = atan((position[1].Y-position[0].Y)/(position[1].X-position[0].X));
         
-        
-        printf("%f %d %f %f %d %f %f\n", h, joints[0], position[0].X, position[0].Y, joints[1], position[1].X, position[1].Y);
+       // printf("%f %d %f %f %d %f %f\n", h, joints[0], position[0].X, position[0].Y, joints[1], position[1].X, position[1].Y);
         
         ofPushMatrix();
-        ofTranslate( (position[0].X+position[1].X)/2, (position[0].Y+position[1].Y)/2);
-        ofRotate(ofRadToDeg(angle), 0, 0, 1);
-        img.draw(0, 0, 0, w, h);
+        if (isHead) {
+            ofTranslate(position[0].X, position[0].Y);
+            img.draw(0, 0, 0, scale * img.width, scale * img.height);
+        } else {
+            
+            float h = scale * abs(ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y));
+            float w = h * (float)img.width / (float)img.height;
+            
+            
+            ofTranslate( (position[0].X+position[1].X)/2, (position[0].Y+position[1].Y)/2);
+            ofRotate(ofRadToDeg(angle), 0, 0, 1);
+            img.draw(0, 0, 0, w, h);
+        }
         ofPopMatrix();
     }
 }
