@@ -12,7 +12,7 @@
 
 class icaKinectBodypart {
 public:
-    icaKinectBodypart(string iImagePath,XnSkeletonJoint iJoint0, XnSkeletonJoint iJoint1, ofxOpenNIContext* iContext);
+    icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0, XnSkeletonJoint iJoint1, float iScale, ofxOpenNIContext* iContext);
     ~icaKinectBodypart();
     void draw();
     
@@ -23,6 +23,8 @@ public:
 	xn::DepthGenerator  depth_generator;
     
     XnSkeletonJoint     joints[2];
+    bool                isHead;
+    float               scale;
 
 };
 
