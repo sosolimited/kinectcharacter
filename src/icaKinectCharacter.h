@@ -30,4 +30,5 @@ public:
     ofxUserGenerator                *user;
     ofxOpenNIContext                *context;
     ofImage                         background;
+    int                             bgLayer;
 };
