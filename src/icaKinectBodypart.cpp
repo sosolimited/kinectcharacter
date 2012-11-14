@@ -8,17 +8,19 @@
 
 #include "icaKinectBodypart.h"
 
-icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0, XnSkeletonJoint iJoint1, float iScale, ofxOpenNIContext* iContext)
+icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0, XnSkeletonJoint iJoint1, XnSkeletonJoint iJoint2, int iLayer, float iScale, ofxOpenNIContext* iContext)
 {
  
     joints[0] = iJoint0;
     joints[1] = iJoint1;
+    joints[2] = iJoint2;
     
     scale = iScale;
+    layer = iLayer;
     
     isHead = (joints[0] == 1) ? true : false;
     
-    printf("joints %d %d", joints[0], joints[1]);
+    printf("layer %d joints %d %d %d", layer, joints[0], joints[1], joints[2]);
     
     img.loadImage(iImagePath);
     img.setAnchorPercent(0.5, 0.5);
@@ -32,33 +34,43 @@ icaKinectBodypart::~icaKinectBodypart(){}
 
 void icaKinectBodypart::draw() {
     
-        
+    glEnable(GL_DEPTH);
+    
     for (int i=0; i<user_generator.GetNumberOfUsers(); i++) {
         
         int id = i+1;
 
         xn::SkeletonCapability pUserSkel = user_generator.GetSkeletonCap();
 
-        XnPoint3D position[2];
-        XnSkeletonJointPosition jointPos[2];
+        
+        // doing an average of joints 1 and 2 here for situations like torso where there is no midpoint joint
+        XnPoint3D position[3];
+        XnSkeletonJointPosition jointPos[3];
         pUserSkel.GetSkeletonJointPosition(id, joints[0], jointPos[0]);
         pUserSkel.GetSkeletonJointPosition(id, joints[1], jointPos[1]);
+        pUserSkel.GetSkeletonJointPosition(id, joints[2], jointPos[2]);
         
         position[0] = jointPos[0].position;
         position[1] = jointPos[1].position;
+        position[2] = jointPos[2].position;
         
-        depth_generator.ConvertRealWorldToProjective(2, position, position);
+        depth_generator.ConvertRealWorldToProjective(3, position, position);
         
         position[0].X = position[0].X*ofGetWidth()/640.0f;
         position[0].Y = position[0].Y*ofGetHeight()/480.0f;
         
-        position[1].X = position[1].X*ofGetWidth()/640.0f;
-        position[1].Y = position[1].Y*ofGetHeight()/480.0f;
+        position[1].X = (position[1].X+position[2].X)*ofGetWidth()/(2.0*640.0f);
+        position[1].Y = (position[1].Y+position[2].Y)*ofGetHeight()/(2.0*480.0f);
+        
+        XnPoint3D midPosition;
+        midPosition.X = (position[0].X+position[1].X)/2;
+        midPosition.Y = (position[0].Y+position[1].Y)/2;
 
         
-        float angle = atan((position[1].Y-position[0].Y)/(position[1].X-position[0].X));
+        float angle = M_PI/2 + atan((position[1].Y-midPosition.Y)/(position[1].X-midPosition.X));
+        if (position[1].X > position[0].X) angle -= M_PI;
+        printf("%f %d %f %f %d %f %f\n", ofRadToDeg(angle), joints[0], position[0].X, position[0].Y, joints[1], position[1].X, position[1].Y);
         
-       // printf("%f %d %f %f %d %f %f\n", h, joints[0], position[0].X, position[0].Y, joints[1], position[1].X, position[1].Y);
         
         ofPushMatrix();
         if (isHead) {
@@ -70,7 +82,7 @@ void icaKinectBodypart::draw() {
             float w = h * (float)img.width / (float)img.height;
             
             
-            ofTranslate( (position[0].X+position[1].X)/2, (position[0].Y+position[1].Y)/2);
+            ofTranslate( midPosition.X, midPosition.Y);
             ofRotate(ofRadToDeg(angle), 0, 0, 1);
             img.draw(0, 0, 0, w, h);
         }

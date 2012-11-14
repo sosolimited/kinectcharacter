@@ -1,7 +1,7 @@
 #include "testApp.h"
 
 
-bool testApp::useHardware = false;
+bool testApp::useHardware = true;
 
 //--------------------------------------------------------------
 void testApp::setup() {
@@ -20,7 +20,7 @@ void testApp::setup() {
 	nearThreshold = 500;
 	farThreshold  = 1000;
 
-	filterFactor = 0.1f;
+	filterFactor = 0.8f;
 
 	if(useHardware) setupRecording();
 
@@ -119,7 +119,7 @@ void testApp::draw(){
                 recordUser.draw();
                 ofPopMatrix();
                 
-                if(curCharacter) curCharacter->draw();
+                //if(curCharacter) curCharacter->draw();
                 
             }
         }
