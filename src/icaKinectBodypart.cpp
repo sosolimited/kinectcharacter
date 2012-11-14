@@ -32,7 +32,6 @@ icaKinectBodypart::~icaKinectBodypart(){}
 
 void icaKinectBodypart::draw() {
     
-        
     for (int i=0; i<user_generator.GetNumberOfUsers(); i++) {
         
         int id = i+1;
