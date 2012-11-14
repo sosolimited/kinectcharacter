@@ -34,6 +34,8 @@ icaKinectBodypart::~icaKinectBodypart(){}
 
 void icaKinectBodypart::draw() {
     
+    glEnable(GL_DEPTH);
+    
     for (int i=0; i<user_generator.GetNumberOfUsers(); i++) {
         
         int id = i+1;
@@ -73,16 +75,16 @@ void icaKinectBodypart::draw() {
         ofPushMatrix();
         if (isHead) {
             ofTranslate(position[0].X, position[0].Y);
-            img.draw(0, 0, layer, scale * img.width, scale * img.height);
+            img.draw(0, 0, 0, scale * img.width, scale * img.height);
         } else {
             
             float h = scale * abs(ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y));
             float w = h * (float)img.width / (float)img.height;
             
             
-            ofTranslate( midPosition.X, midPosition.Y );
+            ofTranslate( midPosition.X, midPosition.Y);
             ofRotate(ofRadToDeg(angle), 0, 0, 1);
-            img.draw(0, 0, layer, w, h);
+            img.draw(0, 0, 0, w, h);
         }
         ofPopMatrix();
     }
