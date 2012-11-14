@@ -5,7 +5,6 @@
     <Image>head.png</Image>
     <Joint0>0</Joint0>
     <Joint1>1</Joint1>
-    <Scale>4.0</Scale>
 </Part>
 
 <Part>
