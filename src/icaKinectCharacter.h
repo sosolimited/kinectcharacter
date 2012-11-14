@@ -20,6 +20,7 @@ public:
     ~icaKinectCharacter();
     
     void                loadParts(string iPathname);
+    void                orderParts();
     
     void                draw();
     
@@ -31,4 +32,6 @@ public:
     ofxOpenNIContext                *context;
     ofImage                         background;
     int                             bgLayer;
+    
+
 };

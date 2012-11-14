@@ -13,3 +13,6 @@
 
 #Compiled apps
 *.app
+*.xcuserstate
+*.DS_store
+
