@@ -135,7 +135,27 @@
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E01AE35E164ABAF400038046 /* icaKinectBodypart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = icaKinectBodypart.cpp; sourceTree = "<group>"; };
 		E01AE35F164ABAF400038046 /* icaKinectBodypart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icaKinectBodypart.h; sourceTree = "<group>"; };
-		E09FCC69164AB9610007DC73 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
+		E09F316A1653FCE5009821B4 /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
+		E09F316B1653FCE5009821B4 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		E09F316C1653FCE5009821B4 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
+		E09F316F1653FCE5009821B4 /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
+		E09F31701653FCE5009821B4 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		E09F31711653FCE5009821B4 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
+		E09F31741653FCE5009821B4 /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
+		E09F31751653FCE5009821B4 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		E09F31761653FCE5009821B4 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
+		E09F31791653FCE5009821B4 /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
+		E09F317A1653FCE5009821B4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		E09F317B1653FCE5009821B4 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		E09F317C1653FCE5009821B4 /* left-lower-arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-lower-arm.png"; sourceTree = "<group>"; };
+		E09F317D1653FCE5009821B4 /* left-upper-arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-upper-arm.png"; sourceTree = "<group>"; };
+		E09F317E1653FCE5009821B4 /* right-lower-arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-lower-arm.png"; sourceTree = "<group>"; };
+		E09F317F1653FCE5009821B4 /* right-upper-arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-upper-arm.png"; sourceTree = "<group>"; };
+		E09F31801653FCE5009821B4 /* torso.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = torso.png; sourceTree = "<group>"; };
+		E09F31811653FCE5009821B4 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
+		E09F31841653FCE5009821B4 /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
+		E09F31851653FCE5009821B4 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		E09F31861653FCE5009821B4 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
 		E0D4EB9016417071003A8B12 /* icaKinectCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = icaKinectCharacter.h; sourceTree = "<group>"; };
 		E0D4EB911641707B003A8B12 /* icaKinectCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = icaKinectCharacter.cpp; sourceTree = "<group>"; };
 		E0DB676F1639D11500FE906D /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
@@ -478,13 +498,113 @@
 			name = "3rd party frameworks";
 			sourceTree = "<group>";
 		};
-		E09FCC4C164AB9610007DC73 /* data */ = {
+		E09F31671653FCE5009821B4 /* characters */ = {
 			isa = PBXGroup;
 			children = (
-				E09FCC69164AB9610007DC73 /* parts.xml */,
+				E09F31681653FCE5009821B4 /* Eric */,
+				E09F316D1653FCE5009821B4 /* John */,
+				E09F31721653FCE5009821B4 /* Justin */,
+				E09F31771653FCE5009821B4 /* Lauren */,
+				E09F31821653FCE5009821B4 /* Sam */,
 			);
-			name = data;
-			path = bin/data;
+			name = characters;
+			path = bin/data/characters;
+			sourceTree = "<group>";
+		};
+		E09F31681653FCE5009821B4 /* Eric */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31691653FCE5009821B4 /* images */,
+				E09F316C1653FCE5009821B4 /* parts.xml */,
+			);
+			path = Eric;
+			sourceTree = "<group>";
+		};
+		E09F31691653FCE5009821B4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E09F316A1653FCE5009821B4 /* arm.png */,
+				E09F316B1653FCE5009821B4 /* head.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		E09F316D1653FCE5009821B4 /* John */ = {
+			isa = PBXGroup;
+			children = (
+				E09F316E1653FCE5009821B4 /* images */,
+				E09F31711653FCE5009821B4 /* parts.xml */,
+			);
+			path = John;
+			sourceTree = "<group>";
+		};
+		E09F316E1653FCE5009821B4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E09F316F1653FCE5009821B4 /* arm.png */,
+				E09F31701653FCE5009821B4 /* head.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		E09F31721653FCE5009821B4 /* Justin */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31731653FCE5009821B4 /* images */,
+				E09F31761653FCE5009821B4 /* parts.xml */,
+			);
+			path = Justin;
+			sourceTree = "<group>";
+		};
+		E09F31731653FCE5009821B4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31741653FCE5009821B4 /* arm.png */,
+				E09F31751653FCE5009821B4 /* head.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		E09F31771653FCE5009821B4 /* Lauren */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31781653FCE5009821B4 /* images */,
+				E09F31811653FCE5009821B4 /* parts.xml */,
+			);
+			path = Lauren;
+			sourceTree = "<group>";
+		};
+		E09F31781653FCE5009821B4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31791653FCE5009821B4 /* arm.png */,
+				E09F317A1653FCE5009821B4 /* background.png */,
+				E09F317B1653FCE5009821B4 /* head.png */,
+				E09F317C1653FCE5009821B4 /* left-lower-arm.png */,
+				E09F317D1653FCE5009821B4 /* left-upper-arm.png */,
+				E09F317E1653FCE5009821B4 /* right-lower-arm.png */,
+				E09F317F1653FCE5009821B4 /* right-upper-arm.png */,
+				E09F31801653FCE5009821B4 /* torso.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		E09F31821653FCE5009821B4 /* Sam */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31831653FCE5009821B4 /* images */,
+				E09F31861653FCE5009821B4 /* parts.xml */,
+			);
+			path = Sam;
+			sourceTree = "<group>";
+		};
+		E09F31831653FCE5009821B4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E09F31841653FCE5009821B4 /* arm.png */,
+				E09F31851653FCE5009821B4 /* head.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		E0DB676D1639D11500FE906D /* include */ = {
@@ -770,7 +890,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				E09FCC4C164AB9610007DC73 /* data */,
+				E09F31671653FCE5009821B4 /* characters */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Part>
+    <Name>head</Name>
+    <Image>head.png</Image>
+    <Joint0>1</Joint0>
+    <Joint1>2</Joint1>
+    <Layer>2</Layer>
+</Part>
+
+<Part>
+    <Name>torso</Name>
+    <Image>torso.png</Image>
+    <Joint0>2</Joint0>
+    <Joint1>17</Joint1>
+    <Joint2>21</Joint2>
+    <Layer>1</Layer>
+</Part>
+
+<Part>
+    <Name>left upper arm</Name>
+    <Image>left-upper-arm.png</Image>
+    <Joint0>6</Joint0>
+    <Joint1>7</Joint1>
+    <Scale>1.0</Scale>
+</Part>
+
+<Part>
+    <Name>left lower arm</Name>
+    <Image>left-lower-arm.png</Image>
+    <Joint0>7</Joint0>
+    <Joint1>9</Joint1>
+</Part>
+
+<Part>
+    <Name>right upper arm</Name>
+    <Image>right-upper-arm.png</Image>
+    <Joint0>12</Joint0>
+    <Joint1>13</Joint1>
+</Part>
+
+<Part>
+    <Name>right lower arm</Name>
+    <Image>right-lower-arm.png</Image>
+    <Joint0>13</Joint0>
+    <Joint1>15</Joint1>
+</Part>
+
+

@@ -7,6 +7,7 @@
 #include "ofMain.h"
 #include "icaKinectCharacter.h"
 
+
 class testApp : public ofBaseApp{
 
 public:
@@ -56,8 +57,13 @@ public:
 	float				filterFactor;
     
     
-    icaKinectCharacter  *character;
+    vector<icaKinectCharacter *>  characters;
+    icaKinectCharacter *curCharacter;
+    int curCharacterIndex;
 
+    ofDirectory         directory;
+    
+    static bool         useHardware;
 };
 
 #endif
