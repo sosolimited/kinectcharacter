@@ -267,11 +267,13 @@ void testApp::keyPressed(int key){
             curCharacterIndex--;
             if(curCharacterIndex < 0) curCharacterIndex = 0;
             curCharacter = characters[curCharacterIndex];
+            printf("testApp::keyPressed - switch to character %d %s", curCharacterIndex, (char*)curCharacter->name.c_str());
             break;
         case OF_KEY_RIGHT:
             //skeletonPos.x += 20;
             curCharacterIndex = ++curCharacterIndex%characters.size();
             curCharacter = characters[curCharacterIndex];
+            printf("testApp::keyPressed - switch to character %d %s", curCharacterIndex, (char*)curCharacter->name.c_str());
             break;
         case OF_KEY_UP:
             skeletonPos.y -= 20;

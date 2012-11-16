@@ -31,4 +31,5 @@ public:
     ofxOpenNIContext                *context;
     ofImage                         background;
     int                             bgLayer;
+    string                          name;
 };

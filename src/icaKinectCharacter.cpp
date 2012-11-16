@@ -14,6 +14,7 @@ icaKinectCharacter::icaKinectCharacter(string iPathname, ofxOpenNIContext *iCont
     //user = iUser;
     context = iContext;
     loadParts(iPathname);
+    name = iPathname;
     printf("icaKinectCharacter: %s\n", (char*)iPathname.c_str());
 }
 
