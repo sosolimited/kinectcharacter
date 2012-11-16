@@ -20,7 +20,7 @@ void testApp::setup() {
 	nearThreshold = 500;
 	farThreshold  = 1000;
 
-	filterFactor = 0.5f;
+	filterFactor = 0.8f;
 
 	if(useHardware) setupRecording();
 
@@ -119,7 +119,7 @@ void testApp::draw(){
                 recordUser.draw();
                 ofPopMatrix();
                 
-                if(curCharacter) curCharacter->draw();
+                //if(curCharacter) curCharacter->draw();
                 
             }
         }

@@ -16,10 +16,11 @@
 class icaKinectCharacter {
     
 public:
-    icaKinectCharacter(string iPathname, ofxOpenNIContext *iContext);//, ofxUserGenerator *iUser);
+    icaKinectCharacter(string iPathname, ofxOpenNIContext *iContext);
     ~icaKinectCharacter();
     
     void                loadParts(string iPathname);
+    void                orderParts();
     
     void                draw();
     
@@ -32,4 +33,5 @@ public:
     ofImage                         background;
     int                             bgLayer;
     string                          name;
+
 };

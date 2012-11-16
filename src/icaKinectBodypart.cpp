@@ -34,6 +34,8 @@ icaKinectBodypart::~icaKinectBodypart(){}
 
 void icaKinectBodypart::draw() {	
     
+    glEnable(GL_DEPTH);
+    
     for (int i=0; i<user_generator.GetNumberOfUsers(); i++) {
         
         int id = i+1;
@@ -82,6 +84,7 @@ void icaKinectBodypart::draw() {
         
         
         ofPushMatrix();
+
         float h = scale * abs(ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y));
         float w = h * (float)img.width / (float)img.height;
         

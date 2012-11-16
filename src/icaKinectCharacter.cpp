@@ -11,7 +11,7 @@
 
 icaKinectCharacter::icaKinectCharacter(string iPathname, ofxOpenNIContext *iContext)
 {
-    //user = iUser;
+       //user = iUser;
     context = iContext;
     loadParts(iPathname);
     name = iPathname;
@@ -22,9 +22,7 @@ icaKinectCharacter::~icaKinectCharacter(){}
 
 void icaKinectCharacter::loadParts(string iPathname) {
     
-	
     char imageChars[256];
-
 
     partsXML.loadFile(iPathname + "parts.xml");
    
@@ -62,12 +60,19 @@ void icaKinectCharacter::loadParts(string iPathname) {
     }
     
     
+    
+    
     printf("icaKinectCharacter::loadParts() - %d loaded \n", (int)parts.size());
 
 }
 
 void icaKinectCharacter::draw()
 {
+    //glEnable(GL_DEPTH);
+    //glEnable(GL_DEPTH_TEST);
+    //ofEnableAlphaBlending();
+    //glDepthMask(GL_FALSE);
+    
     background.draw(0, 0, bgLayer);
     for (int i=0; i<parts.size(); i++) {
         parts[i]->draw();
