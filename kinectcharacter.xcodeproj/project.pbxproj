@@ -174,6 +174,7 @@
 		E01A767A16543AF4006C6EF6 /* parts.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = parts.xml; sourceTree = "<group>"; };
 		E01AE35E164ABAF400038046 /* icaKinectBodypart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = icaKinectBodypart.cpp; sourceTree = "<group>"; };
 		E01AE35F164ABAF400038046 /* icaKinectBodypart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icaKinectBodypart.h; sourceTree = "<group>"; };
+		E09F31901656C713009821B4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		E0D4EB9016417071003A8B12 /* icaKinectCharacter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = icaKinectCharacter.h; sourceTree = "<group>"; };
 		E0D4EB911641707B003A8B12 /* icaKinectCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = icaKinectCharacter.cpp; sourceTree = "<group>"; };
 		E0DB676F1639D11500FE906D /* libusb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
@@ -926,6 +927,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				E09F31901656C713009821B4 /* README.md */,
 				E09F31671653FCE5009821B4 /* characters */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
