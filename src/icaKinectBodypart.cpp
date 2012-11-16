@@ -42,7 +42,7 @@ void icaKinectBodypart::draw() {
         
         // check user being tracked
         if(!user_generator.GetSkeletonCap().IsTracking(id)) {
-            printf("Not tracking this user: %d\n", id);
+            //printf("Not tracking this user: %d\n", id);
             return;
         }
 

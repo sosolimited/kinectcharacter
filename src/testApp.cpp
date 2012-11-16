@@ -119,7 +119,7 @@ void testApp::draw(){
                 recordUser.draw();
                 ofPopMatrix();
                 
-                //if(curCharacter) curCharacter->draw();
+                if(curCharacter) curCharacter->draw();
                 
             }
         }
@@ -267,13 +267,13 @@ void testApp::keyPressed(int key){
             curCharacterIndex--;
             if(curCharacterIndex < 0) curCharacterIndex = 0;
             curCharacter = characters[curCharacterIndex];
-            printf("testApp::keyPressed - switch to character %d %s", curCharacterIndex, (char*)curCharacter->name.c_str());
+            printf("testApp::keyPressed - switch to character %d %s\n", curCharacterIndex, (char*)curCharacter->name.c_str());
             break;
         case OF_KEY_RIGHT:
             //skeletonPos.x += 20;
             curCharacterIndex = ++curCharacterIndex%characters.size();
             curCharacter = characters[curCharacterIndex];
-            printf("testApp::keyPressed - switch to character %d %s", curCharacterIndex, (char*)curCharacter->name.c_str());
+            printf("testApp::keyPressed - switch to character %d %s\n", curCharacterIndex, (char*)curCharacter->name.c_str());
             break;
         case OF_KEY_UP:
             skeletonPos.y -= 20;

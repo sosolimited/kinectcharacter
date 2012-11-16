@@ -41,15 +41,6 @@
 </Part>
 
 <Part>
-    <Name>head</Name>
-    <Image>head.png</Image>
-    <Joint0>1</Joint0>
-    <Joint1>2</Joint1>
-    <Layer>2</Layer>
-    <Scale>2.0</Scale>
-</Part>
-
-<Part>
     <Name>left upper arm</Name>
     <Image>left-upper-arm.png</Image>
     <Joint0>6</Joint0>
