@@ -9,13 +9,35 @@
     <Layer>1</Layer>
 </Part>
 
+
+
 <Part>
-    <Name>head</Name>
-    <Image>head.png</Image>
-    <Joint0>1</Joint0>
-    <Joint1>2</Joint1>
-    <Layer>2</Layer>
-    <Scale>2.0</Scale>
+    <Name>left thigh</Name>
+    <Image>left-thigh.png</Image>
+    <Joint0>17</Joint0>
+    <Joint1>18</Joint1>
+    <Scale>1.0</Scale>
+</Part>
+
+<Part>
+    <Name>left calf</Name>
+    <Image>left-calf.png</Image>
+    <Joint0>18</Joint0>
+    <Joint1>20</Joint1>
+</Part>
+
+<Part>
+    <Name>right thigh</Name>
+    <Image>right-thigh.png</Image>
+    <Joint0>21</Joint0>
+    <Joint1>22</Joint1>
+</Part>
+
+<Part>
+    <Name>right calf</Name>
+    <Image>right-calf.png</Image>
+    <Joint0>22</Joint0>
+    <Joint1>24</Joint1>
 </Part>
 
 <Part>
@@ -48,3 +70,10 @@
 </Part>
 
 
+<Part>
+    <Name>head</Name>
+    <Image>head.png</Image>
+    <Joint0>1</Joint0>
+    <Joint1>2</Joint1>
+    <Layer>2</Layer>
+</Part>

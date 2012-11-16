@@ -15,10 +15,10 @@ icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0,
     joints[1] = iJoint1;
     joints[2] = iJoint2;
     
-    scale = iScale;
+    isHead = (joints[0] == 1) ? true : false;
+    scale = (isHead) ? 2*iScale: iScale;
     layer = iLayer;
     
-    isHead = (joints[0] == 1) ? true : false;
     
     printf("layer %d joints %d %d %d", layer, joints[0], joints[1], joints[2]);
     
@@ -32,13 +32,19 @@ icaKinectBodypart::icaKinectBodypart(string iImagePath, XnSkeletonJoint iJoint0,
 icaKinectBodypart::~icaKinectBodypart(){}
 
 
-void icaKinectBodypart::draw() {
+void icaKinectBodypart::draw() {	
     
     glEnable(GL_DEPTH);
     
     for (int i=0; i<user_generator.GetNumberOfUsers(); i++) {
         
         int id = i+1;
+        
+        // check user being tracked
+        if(!user_generator.GetSkeletonCap().IsTracking(id)) {
+            //printf("Not tracking this user: %d\n", id);
+            return;
+        }
 
         xn::SkeletonCapability pUserSkel = user_generator.GetSkeletonCap();
 
@@ -53,6 +59,11 @@ void icaKinectBodypart::draw() {
         position[0] = jointPos[0].position;
         position[1] = jointPos[1].position;
         position[2] = jointPos[2].position;
+        
+        // check accurate enough
+        if(jointPos[0].fConfidence < 0.3f || jointPos[1].fConfidence < 0.3f || jointPos[2].fConfidence < 0.3f) {
+            return;
+        }
         
         depth_generator.ConvertRealWorldToProjective(3, position, position);
         
@@ -73,19 +84,15 @@ void icaKinectBodypart::draw() {
         
         
         ofPushMatrix();
-        if (isHead) {
-            ofTranslate(position[0].X, position[0].Y);
-            img.draw(0, 0, 0, scale * img.width, scale * img.height);
-        } else {
-            
-            float h = scale * abs(ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y));
-            float w = h * (float)img.width / (float)img.height;
-            
-            
-            ofTranslate( midPosition.X, midPosition.Y);
-            ofRotate(ofRadToDeg(angle), 0, 0, 1);
-            img.draw(0, 0, 0, w, h);
-        }
+
+        float h = scale * abs(ofDist(position[0].X, position[0].Y, position[1].X, position[1].Y));
+        float w = h * (float)img.width / (float)img.height;
+        
+        
+        ofTranslate( midPosition.X, midPosition.Y );
+        ofRotate(ofRadToDeg(angle), 0, 0, 1);
+        img.draw(0, 0, layer, w, h);
+        
         ofPopMatrix();
     }
 }
